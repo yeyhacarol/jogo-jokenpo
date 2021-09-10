@@ -8,35 +8,55 @@ public class Jokenpo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Scanner usuario = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		Random sorteio = new Random();
-		
-		int escolhausuario;
-		int numsorteado = sorteio.nextInt(3) + 1;
-		
-		System.out.println("*** J O K E N P O ***");
-		System.out.println("                       ");
-		System.out.println("Escolha entre: ");
-		System.out.println("1 - Pedra");
-		System.out.println("2 - Papel");
-		System.out.println("3 - Tesoura");
-		System.out.println("                       ");
-		System.out.print("Você escolheu: ");
-		escolhausuario = usuario.nextInt(); 
-		
-		usuario.close();
-		
-		System.out.println("O computador escolheu: " + numsorteado);
-		
-		if (escolhausuario == 1 && numsorteado == 3 || escolhausuario == 2 && numsorteado == 1 || escolhausuario == 3 && numsorteado == 2) {
-			System.out.print("Você GANHOU :) ");
-		}else if (escolhausuario == 3 && numsorteado == 1 || escolhausuario == 1 && numsorteado == 2 || escolhausuario == 2 && numsorteado == 3) {
-			System.out.print("Computador ganhou :(");
-		}else if (escolhausuario > 3) {
-			System.out.print("Não é possível obter um resultado, você não fez uma escolha válida");
-		}else {
-			System.out.print("Empate");
+
+		int escolhaUsuario;
+		int escolhaComputador = sorteio.nextInt(3) + 1;
+		int contador = 0;
+
+		System.out.println("* * J O K E N P O * *");
+		System.out.println("-----------------------");
+		System.out.println("Melhor de três partidas");
+		System.out.println("-----------------------");
+		System.out.println();
+
+		while (contador <= 2) {
+			contador++;
+
+			System.out.println("Partida " + contador);
+			System.out.println();
+			System.out.println("Escolha entre: \n1 - Pedra \n2 - Papel \n3 - Tesoura");
+			System.out.println("-----------------------");
+			System.out.print("Você escolheu a opção ");
+			escolhaUsuario = scanner.nextInt();
+
+			System.out.println();
+			System.out.println("O computador escolheu a opção " + escolhaComputador);
+			System.out.println();
+
+			if (escolhaUsuario == 1 && escolhaComputador == 3 || escolhaUsuario == 2 && escolhaComputador == 1
+					|| escolhaUsuario == 3 && escolhaComputador == 2) {
+				System.out.println("Você G A N H O U esta!");
+				System.out.println("-----------------------");
+
+			} else if (escolhaUsuario == 3 && escolhaComputador == 1 || escolhaUsuario == 1 && escolhaComputador == 2
+					|| escolhaUsuario == 2 && escolhaComputador == 3) {
+				System.out.println("Computador G A N H O U esta!");
+				System.out.println("-----------------------");
+
+			} else if (escolhaUsuario > 3) {
+				System.out.print("Não é possível obter um resultado, você não fez uma escolha válida");
+				
+			} else {
+				System.out.println("E M P A T E");
+				System.out.println("-----------------------");
+
+			}
+
 		}
+
+		scanner.close();
 		
 	}
 
