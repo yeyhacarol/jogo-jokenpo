@@ -15,21 +15,34 @@ public class Jokenpo {
 		int escolhaComputador = sorteio.nextInt(3) + 1;
 		int contador = 0;
 		int numeroPartidas;
-		int ganhosUsuario = 0, ganhosPc = 0, empates = 0;
+		int ganhosUsuario = 0, ganhosPc = 0, empates = 0, valorVitoria = 0;
+		String jogarNovamente = "Sim";
 
 		System.out.println("* * J O K E N P O * *");
 		System.out.println("-----------------------");
-		System.out.println("    Melhor de três");
-		System.out.println("-----------------------");
-		System.out.println();
-		System.out.print("Quantas partidas deseja jogar? ");
-		numeroPartidas = scanner.nextInt();
+		System.out.println("   Melhor de três");
 		System.out.println("-----------------------");
 
-		if (numeroPartidas >= 3 && numeroPartidas % 2 == 1) {
+		while (jogarNovamente.equalsIgnoreCase("Sim") || jogarNovamente.equalsIgnoreCase("S")) {
+
+			System.out.print("Quantas partidas deseja jogar? ");
+			numeroPartidas = scanner.nextInt();
+			System.out.println("-----------------------");
+
+			while (numeroPartidas < 3 && numeroPartidas % 2 != 1) {
+				System.out.println(
+						"Número de partidas precisa atender aos seguintes atributos:\nSer maior ou igual a três;\nSer ímpar."
+								+ " Insira um número válido: ");
+				numeroPartidas = scanner.nextInt();
+			}
+
+			valorVitoria = (numeroPartidas / 2) + (numeroPartidas % 2);
+			System.out.println();
+			System.out.println("O VALOR DA VITÓRIA É: " + valorVitoria);
+			System.out.println();
+			System.out.println("-----------------------");
 
 			while (contador < numeroPartidas) {
-				
 				contador++;
 
 				System.out.println("Partida " + contador);
@@ -88,30 +101,38 @@ public class Jokenpo {
 					empates++;
 					System.out.println("Seu placar: " + ganhosUsuario);
 					System.out.println("Placar do computador: " + ganhosPc);
-					System.out.println("Empatou: " + empates);
+					System.out.println("Empates: " + empates);
 					System.out.println("-----------------------");
 
-					
+				}
+
+				if (ganhosUsuario == valorVitoria) {
+					System.out.println("* * VOCÊ VENCEU O DESAFIO * *");
+					System.out.println("-----------------------");
+				} else if (ganhosPc == valorVitoria) {
+					System.out.println("* * COMPUTADOR VENCEU O DESAFIO * *");
+					System.out.println("-----------------------");
+				}else if (contador == numeroPartidas) {
+					numeroPartidas++;
 				}
 
 			}
 
-			if (ganhosUsuario > ganhosPc) {
-				System.out.println("* * VOCÊ VENCEU O DESAFIO! * *");
-			} else if (ganhosPc > ganhosUsuario) {
-				System.out.println("COMPUTADOR GANHOU O DESAFIO!");
-			} else {
-				System.out.println("Deu empate!");
+			System.out.println("Deseja jogar novamente? (S/N)");
+			jogarNovamente = scanner.next();
 
-			}
-
-			scanner.close();
-
-		} else {
-			System.out.println(
-					"Número de partidas precisa atender aos seguintes atributos:\nSer maior ou igual a três;\nSer ímpar.");
+			numeroPartidas = 0;
+			contador = 0;
+			ganhosUsuario = 0;
+			ganhosPc = 0;
+			empates = 0;
+			valorVitoria = 0;
 
 		}
+
+		scanner.close();
+
+		System.out.println("FIM DO JOGO!\nObrigada por jogar!");
 
 	}
 
